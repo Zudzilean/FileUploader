@@ -1,0 +1,1 @@
+This is a test file for OpenAI summarization. The content is in English to check if the API key works for non-Chinese text as well. The summary should be concise and accurate.

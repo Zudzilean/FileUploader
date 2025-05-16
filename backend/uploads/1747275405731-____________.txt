@@ -1,0 +1,2111 @@
+{
+    "SaveVersion": {
+        "Major": 0,
+        "Minor": 527
+    },
+    "Groups": [
+        {
+            "GroupId": "Custom-e2d47a00-b2bf-4db1-9562-0fdbffa7a6ae",
+            "GroupName": "任务：独舞高阶",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        3046938178,
+                        1233673456
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-48d3489d-17ce-441a-b569-a5eccdd91824",
+            "GroupName": "饮食：糖肉",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1924751409
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-f916d039-9a09-436f-b318-6dfdc88df11d",
+            "GroupName": "饮食：弹跳面包",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        431528556
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-0237a618-1914-464d-8a28-246ffcf2943d",
+            "GroupName": "饮食：苦稀粥",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1381568451,
+                        3597878955
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-392d8906-c146-438b-b124-85f9ce67556c",
+            "GroupName": "魔杖电：占卜",
+            "Conditionals": [
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-2a05b02f-285d-4a9d-ab41-3ac83665b574",
+            "GroupName": "饮食：苦稻小炒",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1740983094
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-4de6ba3f-f04a-4633-9e8a-9d340d26faeb",
+            "GroupName": "饮食：鲜红碎肉",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        4237817713
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-8d43b7ae-4df2-4446-a719-551496778ff7",
+            "GroupName": "饮食：弹跳面包沙拉",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2177073970
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-e92115b7-abdf-4f73-8628-437c94925a44",
+            "GroupName": "日程：夜班",
+            "Conditionals": [
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-5038d8f7-6542-4ce6-9fea-385427accae7",
+            "GroupName": "饮食：脏莓",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        3880270383
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-a5b09f0b-db7f-4197-a579-ec7d2dbd571c",
+            "GroupName": "饮食：脏莓羹",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        321310927
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-71d15fe2-b7cf-49ff-97c3-926314d22807",
+            "GroupName": "饮食：硬面饼干",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2609092832
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-771d0873-258a-4a63-a0d5-c000fc5c2c72",
+            "GroupName": "饮食：蜜汁稀粥",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2170972218,
+                        570547238
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-baf70e75-e1c8-46da-94b4-5a24622ffae6",
+            "GroupName": "饮食：蜜汁小炒",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2488044324
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-c07d2cb1-d56e-4b2c-a836-682eb4bde36a",
+            "GroupName": "饮食：叶蔬汤",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2893467419
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-fb146af4-fa4d-4aca-8a47-0dcec8d1c198",
+            "GroupName": "饮食：肉菜双拼",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1265402626
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-fe78b824-be87-4118-a715-3cda03b43284",
+            "GroupName": "饮食：岩石焦糖",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        3859504006
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-31f0ca35-032e-4f2e-afdc-b81df6be177a",
+            "GroupName": "任务：跳舞",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2646774812,
+                        1103232905,
+                        10256027,
+                        721511153,
+                        1584209418,
+                        1233673456,
+                        3046938178,
+                        1697243771,
+                        1929613453,
+                        2346801892,
+                        3410683295,
+                        1163994521,
+                        2192958880,
+                        3315490791,
+                        3976554421,
+                        400053939
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 1,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-8397724c-0d99-468a-beb6-80988c33e6c3",
+            "GroupName": "试炼：整洁",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        3309239548,
+                        2965402904,
+                        3051498879,
+                        435557399
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-a31340ac-7428-42af-aa8f-8aebf1bba463",
+            "GroupName": "试炼：照料",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1173062117,
+                        818495586,
+                        613892374,
+                        3628853449
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-9faff5ab-287a-4272-b76b-15a24fab95b6",
+            "GroupName": "试炼：抵御",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2576368685,
+                        1074965683,
+                        1041621665
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-9d7e3e48-323c-47b4-ba48-7accc9cf6f3a",
+            "GroupName": "试炼：充能",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1521192886,
+                        2938903614,
+                        679514271
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-a897687f-2e2b-4fcb-be50-a723152fd65f",
+            "GroupName": "试炼：炼兽",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        3390031042,
+                        437693219,
+                        3311835960,
+                        1006570328
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-4313682b-a323-4a64-a1e9-8a22173e89ae",
+            "GroupName": "魔杖土：建筑",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-db8315fc-ae5d-49c2-860d-6739ce53f435",
+            "GroupName": "魔杖水：炼金",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-e5879380-f363-413b-a76d-e0a7645542c9",
+            "GroupName": "魔杖草：砍伐",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-8bca1b7b-45e6-467d-bb53-2bcc99fd4c24",
+            "GroupName": "魔杖暗：缝纫",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-18ff8641-388d-43b5-bb14-4c244894ff65",
+            "GroupName": "魔杖火：捕猎",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff",
+                        "AllApprentices"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-7d117de5-024a-4f13-b636-3ca232042667",
+            "GroupName": "新生充分训练",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        39202599,
+                        729000452,
+                        1243459562,
+                        228289952,
+                        4286062909,
+                        1381568451,
+                        3597878955,
+                        1740983094,
+                        2060523782,
+                        2377253892,
+                        201024711,
+                        1687647855,
+                        4199325460,
+                        151884004,
+                        1717105809,
+                        1444394897,
+                        2538109463,
+                        3355946458,
+                        3650231934,
+                        1381809793,
+                        3493922998,
+                        2032219870,
+                        1044392110,
+                        788984492,
+                        3764989245,
+                        3549348381,
+                        284351254,
+                        247013463,
+                        4237817713,
+                        431528556,
+                        2177073970,
+                        2928629734,
+                        1572055857,
+                        1330472062,
+                        86014408,
+                        1521192886,
+                        2938903614,
+                        679514271,
+                        270720495,
+                        2950435560,
+                        1070680004,
+                        437693219,
+                        3390031042,
+                        3311835960,
+                        1006570328,
+                        2646774812,
+                        1103232905,
+                        10256027,
+                        721511153,
+                        1584209418,
+                        1233673456,
+                        3046938178,
+                        1697243771,
+                        1929613453,
+                        2346801892,
+                        3410683295,
+                        1163994521,
+                        2192958880,
+                        3315490791,
+                        3976554421,
+                        400053939,
+                        539816158,
+                        1837464415,
+                        670243779,
+                        3440909552,
+                        3146559562,
+                        2926339305,
+                        2891748743,
+                        1671652287,
+                        3995029861,
+                        1429788362,
+                        2623326423,
+                        2815593157,
+                        1932766940,
+                        3287076001,
+                        1607573153,
+                        1223081883,
+                        3263956196,
+                        1944080309,
+                        3879582989,
+                        481482156,
+                        24641016,
+                        2686767255,
+                        3294837649,
+                        2632603983,
+                        2774565874,
+                        3339567935,
+                        3880270383,
+                        321310927,
+                        2609092832,
+                        2170972218,
+                        570547238,
+                        2488044324,
+                        3998058497,
+                        1668246652,
+                        2262875270,
+                        1264535463,
+                        650149558,
+                        1091661166,
+                        1214819134,
+                        2893467419,
+                        1265402626,
+                        146989453,
+                        3309239548,
+                        2965402904,
+                        3051498879,
+                        435557399,
+                        1173062117,
+                        818495586,
+                        613892374,
+                        3628853449,
+                        3943939085,
+                        1779735010,
+                        2579877765,
+                        495329577,
+                        220195878,
+                        74069006,
+                        714591895,
+                        3253597474,
+                        489991950,
+                        2432390828,
+                        2788722208,
+                        1667976133,
+                        2852419168,
+                        3045711467,
+                        1871263866,
+                        887205170,
+                        4257087795,
+                        3759884398,
+                        2972554907,
+                        1642306324,
+                        2250877636,
+                        1531319216,
+                        897231748,
+                        3859504006,
+                        1547253568,
+                        3379937533,
+                        1416723700,
+                        2216835891,
+                        2003429355,
+                        247623320,
+                        2697937045,
+                        1941136510,
+                        247793211,
+                        441286459,
+                        1010807272,
+                        1719258961,
+                        1071206999,
+                        25844964,
+                        1612568851,
+                        1813013769,
+                        4055998379,
+                        3878577233,
+                        2823128250,
+                        2393949296,
+                        3982439338,
+                        294308592,
+                        3674384428,
+                        375073855,
+                        2950331947,
+                        379437098,
+                        1924751409,
+                        1074965683,
+                        2576368685,
+                        1041621665
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllInitiates"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 1,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-f6e1e9e0-a96b-4cf0-aa3f-cab5bc4042dc",
+            "GroupName": "紧急情况：饥饿",
+            "Conditionals": [
+                {
+                    "Category": 2,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [
+                        2353666605,
+                        2970990637,
+                        1141753707,
+                        323667410,
+                        3608778248
+                    ],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-e5df3ae3-7978-4784-88da-6831ccc666f8",
+            "GroupName": "任务：低阶独食",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2697937045,
+                        441286459
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-5c1925fb-55a0-44f6-bede-630469f31e19",
+            "GroupName": "任务：独身学者",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1010807272,
+                        1719258961,
+                        1071206999,
+                        25844964,
+                        1612568851,
+                        1813013769,
+                        4055998379,
+                        3878577233,
+                        2823128250,
+                        2393949296,
+                        3982439338,
+                        294308592,
+                        3674384428,
+                        375073855,
+                        379437098,
+                        2950331947
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-93a5fb5e-a879-4edc-8265-8deb1cd73154",
+            "GroupName": "任务：低阶独舞",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1584209418,
+                        1697243771
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-a482f36a-ee29-4d73-9558-49729addc63d",
+            "GroupName": "学徒：风专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-f0d54ddd-76f9-4b10-b83d-827527e59476",
+            "GroupName": "学徒：电专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-e6c148f7-a750-479c-bd86-cae408884228",
+            "GroupName": "学徒：草专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-121ca966-ab4e-4472-8785-5bb2ba5f58f4",
+            "GroupName": "学徒：火专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-fd36bbe8-357e-44aa-a4bf-725cf5fa57b3",
+            "GroupName": "学徒：水专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-f7118a2f-6e83-4d3e-93bc-219444b8cdec",
+            "GroupName": "学徒：暗专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-da48bcb9-6442-4db9-8c52-8479bba13848",
+            "GroupName": "学徒：土专项",
+            "Conditionals": [
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 4,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-a4959a64-c0f6-4865-bb4f-c98a4ba57842",
+            "GroupName": "新生大课",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1010807272,
+                        1719258961,
+                        1071206999,
+                        25844964,
+                        1612568851,
+                        1813013769,
+                        4055998379,
+                        3878577233,
+                        2823128250,
+                        2393949296,
+                        3982439338,
+                        294308592,
+                        3674384428,
+                        375073855,
+                        2950331947,
+                        379437098
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllInitiates"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-29a5bd24-eba5-4cf9-9f62-0cca7673e3d4",
+            "GroupName": "学生群舞",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1584209418,
+                        3046938178,
+                        1233673456
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-bdb33905-6c7e-41cc-a4fd-55fc5349c5b1",
+            "GroupName": "学生聚餐",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        2697937045,
+                        1941136510,
+                        247793211,
+                        441286459
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStudents"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-43d54a01-ea00-4743-aa82-45050e10932b",
+            "GroupName": "任务：时长试炼",
+            "Conditionals": [
+                {
+                    "Category": 4,
+                    "Predicate": 1,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1243459562,
+                        228289952,
+                        2928629734,
+                        1572055857,
+                        1330472062,
+                        86014408,
+                        1521192886,
+                        2938903614,
+                        679514271,
+                        437693219,
+                        3390031042,
+                        3311835960,
+                        1006570328,
+                        3309239548,
+                        2965402904,
+                        3051498879,
+                        435557399,
+                        1173062117,
+                        818495586,
+                        613892374,
+                        3628853449,
+                        1074965683,
+                        2576368685,
+                        1041621665
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-813b0196-f8cc-4ebd-9a0f-c201fdf2ac2c",
+            "GroupName": "任务：睡觉",
+            "Conditionals": [
+                {
+                    "Category": 4,
+                    "Predicate": 1,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 5,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 1,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 4,
+                            "Min": 0,
+                            "Max": 8
+                        },
+                        {
+                            "Skill": 2,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        4286062909,
+                        2950435560,
+                        3995029861,
+                        1668246652,
+                        1416723700,
+                        2216835891,
+                        2003429355,
+                        247623320
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-ffc8ea40-134b-4df3-b384-a39b03e01cc1",
+            "GroupName": "任务：独食高阶",
+            "Conditionals": [
+                {
+                    "Category": 9,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [
+                        1941136510,
+                        247793211
+                    ],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-0af98d6c-51c2-49dc-ac0f-91ab2f4bf489",
+            "GroupName": "夜组：炊事班",
+            "Conditionals": [
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 3,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 3,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 1,
+                            "Min": 3,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-fd9cd428-eb61-403e-a245-db9dfa2e7e1f",
+            "GroupName": "教师非内向",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 2,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 6,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        },
+        {
+            "GroupId": "Custom-6b14f4bf-d5c7-4eb2-bd55-1d399487e82b",
+            "GroupName": "魔杖风：搬运",
+            "Conditionals": [
+                {
+                    "Category": 1,
+                    "Predicate": 0,
+                    "GroupIds": [
+                        "AllStaff"
+                    ],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                },
+                {
+                    "Category": 8,
+                    "Predicate": 0,
+                    "GroupIds": [],
+                    "StatusIds": [],
+                    "TrialIds": [],
+                    "QuirkIds": [],
+                    "MedallionIds": [],
+                    "FactionIds": [],
+                    "Ranges": [
+                        {
+                            "Skill": 7,
+                            "Min": 0,
+                            "Max": 8
+                        }
+                    ],
+                    "ArchetypeIds": [],
+                    "IsDisabled": false
+                }
+            ]
+        }
+    ]
+}
