@@ -127,6 +127,24 @@ cd frontend
 npm start
 ```
 
+### 依赖管理
+项目使用 npm 管理依赖，主要依赖包括：
+
+#### 后端依赖
+- express: Web 框架
+- mongoose: MongoDB 对象建模
+- multer: 文件上传处理
+- bull: 任务队列
+- axios: HTTP 客户端
+- dotenv: 环境变量管理
+
+#### 前端依赖
+- react: 用户界面库
+- axios: HTTP 客户端
+- tailwindcss: 样式框架
+
+完整的依赖列表请查看 `package.json` 文件。安装依赖时，只需运行 `npm install` 即可。
+
 ## 常见问题
 
 1. 文件上传失败
@@ -142,6 +160,11 @@ npm start
 3. 数据库连接失败
    - 确认 MongoDB 服务是否运行
    - 检查数据库连接字符串
+
+4. 依赖安装问题
+   - 确保 Node.js 版本正确（18+）
+   - 删除 node_modules 目录后重新安装
+   - 检查网络连接是否正常
 
 ## 贡献指南
 
