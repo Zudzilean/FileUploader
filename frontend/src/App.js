@@ -11,8 +11,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [showUploader, setShowUploader] = useState(false);
+  const fileInputRef = React.useRef();
+  const [viewMode, setViewMode] = useState('content'); // 'content' or 'summary'
+  const [fileContent, setFileContent] = useState('');
+  const [fileSummary, setFileSummary] = useState('');
+  const [summaryStatus, setSummaryStatus] = useState('');
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
-  // 获取已上传的文件列表
   const fetchFiles = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -20,7 +27,6 @@ function App() {
     try {
       const response = await axios.get(`${API_URL}/files`);
       if (response.data.success) {
-        // 文件已按上传时间降序排序
         setUploadedFiles(response.data.files);
       } else {
         setError('获取文件列表失败: ' + response.data.message);
@@ -32,83 +38,262 @@ function App() {
     }
   }, []);
 
-  // 初始加载和刷新时获取文件列表
   useEffect(() => {
     fetchFiles();
   }, [fetchFiles, refreshTrigger]);
 
-  // 处理上传成功
   const handleUploadSuccess = (newFiles) => {
-    // 触发文件列表刷新
     setRefreshTrigger(prev => prev + 1);
   };
 
-  // 处理文件删除
   const handleFileDeleted = (fileId) => {
-    // 从当前列表中移除已删除的文件
     setUploadedFiles(prevFiles => 
       prevFiles.filter(file => file._id !== fileId)
     );
   };
 
-  // 手动刷新文件列表
-  const refreshFileList = () => {
-    setRefreshTrigger(prev => prev + 1);
+  const handleSelectFile = (file) => {
+    setSelectedFile(file);
+  };
+
+  const handleFileInputChange = async (e) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    const formData = new FormData();
+    files.forEach(file => formData.append('files', file));
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post(`${API_URL}/upload`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      if (response.data.success) {
+        setRefreshTrigger(prev => prev + 1);
+        // 自动选中新上传的第一个文件
+        if (response.data.files && response.data.files.length > 0) {
+          setSelectedFile(response.data.files[0]);
+          setViewMode('content');
+        }
+      } else {
+        setError('上传失败: ' + response.data.message);
+      }
+    } catch (err) {
+      setError('上传失败: ' + (err.response?.data?.message || err.message));
+    } finally {
+      setLoading(false);
+      // 清空input
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const showFileContent = async () => {
+    if (!selectedFile) return;
+    setViewMode('content');
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get(`${API_URL}/files/${selectedFile._id}`);
+      if (response.data.success) {
+        setFileContent(response.data.file.content || '');
+      } else {
+        setError('获取文件内容失败: ' + response.data.message);
+      }
+    } catch (err) {
+      setError('获取文件内容失败: ' + (err.response?.data?.message || err.message));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const showSummary = async () => {
+    if (!selectedFile) return;
+    setViewMode('summary');
+    setSummaryLoading(true);
+    setError(null);
+    try {
+      // 先尝试获取摘要
+      let response = await axios.get(`${API_URL}/files/${selectedFile._id}`);
+      if (response.data.success && response.data.file.summary) {
+        setFileSummary(response.data.file.summary);
+        setSummaryStatus(response.data.file.summaryStatus || 'completed');
+        setSummaryLoading(false);
+        return;
+      }
+      // 没有摘要则请求生成
+      response = await axios.post(`${API_URL}/files/${selectedFile._id}/summary`);
+      if (response.data.success) {
+        setSummaryStatus('pending');
+        // 轮询摘要状态
+        pollSummary(selectedFile._id);
+      } else {
+        setError('生成摘要失败: ' + response.data.message);
+        setSummaryLoading(false);
+      }
+    } catch (err) {
+      setError('生成摘要失败: ' + (err.response?.data?.message || err.message));
+      setSummaryLoading(false);
+    }
+  };
+
+  const pollSummary = (fileId) => {
+    const interval = setInterval(async () => {
+      try {
+        const response = await axios.get(`${API_URL}/files/${fileId}/summary`);
+        if (response.data.success) {
+          setSummaryStatus(response.data.summaryStatus);
+          if (response.data.summary) setFileSummary(response.data.summary);
+          if (['completed', 'failed'].includes(response.data.summaryStatus)) {
+            clearInterval(interval);
+            setSummaryLoading(false);
+          }
+        }
+      } catch {
+        clearInterval(interval);
+        setSummaryLoading(false);
+      }
+    }, 2000);
+  };
+
+  const getFileTypeIcon = (file) => {
+    const extension = (file.originalName || file.name || '').split('.').pop().toLowerCase();
+    switch (extension) {
+      case 'txt':
+        return '📄';
+      case 'md':
+        return '📝';
+      case 'pdf':
+        return '��';
+      case 'docx':
+        return '📋';
+      default:
+        return '📁';
+    }
+  };
+
+  const handleUploadBtnClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleDeleteFile = async (fileId) => {
+    if (!window.confirm('确定要删除该文件吗？')) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.delete(`${API_URL}/files/${fileId}`);
+      if (response.data.success) {
+        setUploadedFiles(prev => prev.filter(f => f._id !== fileId));
+        if (selectedFile && selectedFile._id === fileId) setSelectedFile(null);
+      } else {
+        setError('删除文件失败: ' + response.data.message);
+      }
+    } catch (err) {
+      setError('删除文件失败: ' + (err.response?.data?.message || err.message));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>文件上传与查看系统</h1>
-      </header>
-      
-      <main className="App-main">
-        <section className="upload-section">
-          <div className="section-header">
-            <h2>上传文件</h2>
-          </div>
-          <FileUploader onUploadSuccess={handleUploadSuccess} />
-        </section>
-        
-        <section className="view-section">
-          <div className="section-header">
-            <h2>文件管理</h2>
-            <button 
-              className="refresh-btn" 
-              onClick={refreshFileList}
-              disabled={loading}
-              title="刷新文件列表"
-            >
-              {loading ? '刷新中...' : '刷新'}
-            </button>
-          </div>
-          
-          {loading && uploadedFiles.length === 0 ? (
-            <div className="loading">
-              <div className="loading-spinner"></div>
-              <p>加载文件列表中...</p>
+    <div className="app-container">
+      <div className="app-main-flex">
+        {/* 左侧栏 */}
+        <aside className="sidebar">
+          <button className="upload-icon-btn sidebar-upload-btn" type="button" onClick={handleUploadBtnClick} title="新增文件">
+            <span className="upload-icon">+</span>
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            style={{ display: 'none' }}
+            multiple
+            accept=".txt,.md,.pdf,.docx"
+            onChange={handleFileInputChange}
+          />
+          <ul className="sidebar-file-list">
+            {uploadedFiles.map((file, idx) => (
+              <li
+                key={file._id}
+                className={`sidebar-file-item${selectedFile && selectedFile._id === file._id ? ' selected' : ''}`}
+                title={file.originalName}
+                onClick={() => handleSelectFile(file)}
+              >
+                <span className="file-icon">{getFileTypeIcon(file)}</span>
+                <span className="file-name-ellipsis">{file.originalName}</span>
+                <button
+                  className="delete-file-x"
+                  title="删除文件"
+                  onClick={e => { e.stopPropagation(); handleDeleteFile(file._id); }}
+                >×</button>
+              </li>
+            ))}
+          </ul>
+        </aside>
+        {/* 右侧主显示区 */}
+        <main className="main-display-area">
+          {error && (
+            <div className="message error">
+              <div className="message-content">
+                <span className="error-icon">⚠️</span>
+                {error}
+                <button className="dismiss-btn" onClick={() => setError(null)}>✕</button>
+              </div>
             </div>
-          ) : error ? (
-            <div className="error-message">
-              <span className="error-icon">⚠️</span>
-              {error}
-              <button className="dismiss-btn" onClick={() => setError(null)}>✕</button>
+          )}
+          {loading ? (
+            <div className="message system">
+              <div className="message-content loading">
+                <div className="loading-spinner"></div>
+                <p>正在加载...</p>
+              </div>
             </div>
           ) : (
-            <FileViewer 
-              uploadedFiles={uploadedFiles} 
-              onFileDeleted={handleFileDeleted}
-            />
+            selectedFile ? (
+              <div className="file-content-area">
+                <div className="file-content-header">
+                  <span className="file-icon" style={{fontSize:'2rem'}}>{getFileTypeIcon(selectedFile)}</span>
+                  <span style={{marginLeft:'1rem',fontWeight:600}}>{selectedFile.originalName}</span>
+                </div>
+                <div className="file-meta-info">
+                  <span>大小: {selectedFile.size} 字节</span>
+                  {selectedFile.uploadDate && <span style={{marginLeft:'1.5rem'}}>上传于: {selectedFile.uploadDate}</span>}
+                </div>
+                {/* 内容/摘要切换 */}
+                {viewMode === 'content' && (
+                  <div className="content-display" style={{marginTop:'2rem'}}>
+                    {fileContent ? fileContent.split('\n').map((line,i)=>(<div key={i} className="content-line">{line || <br />}</div>)) : <span style={{color:'#bbb'}}>暂无内容</span>}
+                  </div>
+                )}
+                {viewMode === 'summary' && (
+                  <div className="content-display" style={{marginTop:'2rem'}}>
+                    {summaryLoading ? <span style={{color:'#bbb'}}>AI正在生成摘要...</span> :
+                      summaryStatus==='completed' && fileSummary ? fileSummary :
+                      summaryStatus==='failed' ? <span style={{color:'red'}}>摘要生成失败</span> :
+                      <span style={{color:'#bbb'}}>暂无摘要</span>
+                    }
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="guide-text-center">
+                <span>现在你可以添加文件了</span>
+              </div>
+            )
           )}
-        </section>
-      </main>
-      
-      <footer className="App-footer">
-        <div className="footer-content">
-          <p>支持上传 TXT、MD、PDF 和 DOCX 文件</p>
-          <p className="version">版本 1.0.0</p>
-        </div>
+        </main>
+      </div>
+      {/* 底部操作区 */}
+      <footer className="bottom-action-bar">
+        <button className="action-btn" disabled={!selectedFile} onClick={showFileContent}>文件内容</button>
+        <button className="action-btn" disabled={!selectedFile} onClick={showSummary}>生成摘要</button>
       </footer>
+      {/* 上传弹窗 */}
+      {showUploader && (
+        <div className="modal-mask" onClick={() => setShowUploader(false)}>
+          <div className="modal-uploader" onClick={e => e.stopPropagation()}>
+            <FileUploader onUploadSuccess={handleUploadSuccess} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

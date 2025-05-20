@@ -182,24 +182,33 @@ const FileUploader = ({ onUploadSuccess }) => {
 
   return (
     <div className="file-uploader">
-      <div 
-        {...getRootProps()} 
-        className={`dropzone ${isDragActive ? 'active' : ''}`}
+      {/* 上传按钮：圆形图标按钮 */}
+      <button
+        className="upload-icon-btn"
+        type="button"
+        onClick={open}
+        title="上传文件"
+        disabled={uploading}
       >
-        <input {...getInputProps()} />
-        <div className="dropzone-content">
-          <div className="dropzone-icon">
-            {isDragActive ? '📥' : '📤'}
-          </div>
-          {
-            isDragActive ?
-              <p className="dropzone-text">将文件放在这里...</p> :
-              <p className="dropzone-text">拖放文件到此处，或<span className="browse-text" onClick={open}>浏览文件</span></p>
-          }
-          <p className="supported-formats">支持的格式: TXT, MD, PDF, DOCX</p>
-        </div>
-      </div>
+        <span className="upload-icon">📎</span>
+      </button>
+      <input {...getInputProps()} style={{ display: 'none' }} />
 
+      {/* 文件图标列表 */}
+      <ul className="upload-file-icons-list">
+        {files.map((file, idx) => (
+          <li
+            key={idx}
+            className="upload-file-icon-item"
+            title={file.name}
+            onClick={() => removeFile(idx)}
+          >
+            <span className="file-icon">{getFileIcon(file.name)}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* 错误和成功提示、进度条、上传按钮等保留原有逻辑，可适当精简 */}
       {error && (
         <div className="error-message">
           <span className="error-icon">⚠️</span>
@@ -207,7 +216,6 @@ const FileUploader = ({ onUploadSuccess }) => {
           <button className="dismiss-btn" onClick={() => setError(null)}>✕</button>
         </div>
       )}
-
       {successMessage && (
         <div className="success-message">
           <span className="success-icon">✅</span>
@@ -215,55 +223,16 @@ const FileUploader = ({ onUploadSuccess }) => {
           <button className="dismiss-btn" onClick={() => setSuccessMessage(null)}>✕</button>
         </div>
       )}
-
-      <div className="selected-files">
-        <div className="selected-files-header">
-          <h3>已选择 {files.length} 个文件</h3>
-          <button 
-            type="button" 
-            className="clear-all-btn"
-            onClick={clearAllFiles}
-          >
-            清除全部
-          </button>
-        </div>
-        <ul className="files-list">
-          {files.map((file, index) => (
-            <li key={index} className="file-item">
-              <div className="file-info">
-                <span className="file-icon">{getFileIcon(file.name)}</span>
-                <div className="file-details">
-                  <span className="file-name">{file.name}</span>
-                  <span className="file-size">{formatFileSize(file.size)}</span>
-                </div>
-              </div>
-              <button 
-                type="button" 
-                className="remove-file-btn"
-                onClick={() => removeFile(index)}
-                title="移除文件"
-              >
-                ✕
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
       {uploading && (
         <div className="progress-container">
-          <div 
-            className="progress-bar" 
-            style={{ width: `${uploadProgress.percent || 0}%` }}
-          ></div>
+          <div className="progress-bar" style={{ width: `${uploadProgress.percent || 0}%` }}></div>
           <span className="progress-text">{uploadProgress.percent || 0}%</span>
         </div>
       )}
-
       <div className="action-buttons">
-        <button 
-          className="upload-btn" 
-          onClick={uploadFiles} 
+        <button
+          className="upload-btn"
+          onClick={uploadFiles}
           disabled={uploading || files.length === 0}
         >
           {uploading ? '上传中...' : '上传文件'}

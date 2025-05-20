@@ -10,6 +10,10 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [deletingFile, setDeletingFile] = useState(null);
+  const [summary, setSummary] = useState('');
+  const [summaryStatus, setSummaryStatus] = useState('');
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [summaryError, setSummaryError] = useState(null);
 
   // 当上传的文件列表变化时，如果当前选中的文件不在列表中，则清除选中状态
   useEffect(() => {
@@ -28,11 +32,6 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
       return () => clearTimeout(timer);
     }
   }, [successMessage]);
-
-  const [summary, setSummary] = useState('');
-  const [summaryStatus, setSummaryStatus] = useState('');
-  const [summaryLoading, setSummaryLoading] = useState(false);
-  const [summaryError, setSummaryError] = useState(null);
 
   // 获取文件内容和摘要
   const fetchFileContent = async (file) => {
@@ -133,13 +132,7 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
     setError(null);
     
     try {
-      const response = await axios.delete(`${API_URL}/files/${file._id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          // 如果有认证机制，例如JWT，可以在这里添加
-          // 'Authorization': `Bearer ${yourAuthToken}`,
-        }
-      });
+      const response = await axios.delete(`${API_URL}/files/${file._id}`);
       
       if (response.data.success) {
         setSuccessMessage(`文件 "${file.originalName}" 已成功删除`);
@@ -171,13 +164,13 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
     
     switch (extension) {
       case 'txt':
-        return '�';
+        return '📄';
       case 'md':
-        return '�';
+        return '📝';
       case 'pdf':
-        return '�';
+        return '📑';
       case 'docx':
-        return '�';
+        return '📋';
       default:
         return '📁';
     }
@@ -216,32 +209,16 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
 
   return (
     <div className="file-viewer">
-      <h2>已上传的文件</h2>
-      
-      {error && (
-        <div className="error-message">
-          <span className="error-icon">⚠️</span>
-          {error}
-          <button className="dismiss-btn" onClick={() => setError(null)}>✕</button>
-        </div>
-      )}
-
-      {successMessage && (
-        <div className="success-message">
-          <span className="success-icon">✅</span>
-          {successMessage}
-          <button className="dismiss-btn" onClick={() => setSuccessMessage(null)}>✕</button>
-        </div>
-      )}
-      
       {uploadedFiles.length === 0 ? (
-        <div className="no-files">
-          <div className="empty-state-icon">📂</div>
-          <p>没有上传的文件</p>
-          <p className="empty-state-hint">上传文件后将显示在这里</p>
+        <div className="message system">
+          <div className="message-content">
+            <div className="empty-state-icon">📂</div>
+            <p>没有上传的文件</p>
+            <p className="empty-state-hint">上传文件后将显示在这里</p>
+          </div>
         </div>
       ) : (
-        <div className="file-viewer-container">
+        <div className="file-viewer-grid">
           <div className="file-list">
             <h3>文件列表 ({uploadedFiles.length})</h3>
             <ul className="files-list">
@@ -278,111 +255,123 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
           <div className="file-content">
             {selectedFile ? (
               <>
-                <div className="file-content-header">
-                  <div className="file-content-title">
-                    <span className="file-icon">{getFileTypeIcon(selectedFile)}</span>
-                    <h3>{selectedFile.originalName}</h3>
-                  </div>
-                  <div className="file-content-meta">
-                    <span className="file-size">
-                      {formatFileSize(selectedFile.size)}
-                    </span>
-                    {selectedFile.uploadDate && (
-                      <span className="file-date">
-                        上传于: {formatDate(selectedFile.uploadDate)}
-                      </span>
-                    )}
+                <div className="message system">
+                  <div className="message-content">
+                    <div className="file-content-header">
+                      <div className="file-content-title">
+                        <span className="file-icon">{getFileTypeIcon(selectedFile)}</span>
+                        <h3>{selectedFile.originalName}</h3>
+                      </div>
+                      <div className="file-content-meta">
+                        <span className="file-size">
+                          {formatFileSize(selectedFile.size)}
+                        </span>
+                        {selectedFile.uploadDate && (
+                          <span className="file-date">
+                            上传于: {formatDate(selectedFile.uploadDate)}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="summary-section">
-                  <div className="summary-header">
-                    <h4>AI文档摘要</h4>
-                    <div className="summary-status">
-                      {summaryStatus === 'pending' && (
-                        <span className="status pending">等待处理</span>
-                      )}
-                      {summaryStatus === 'processing' && (
-                        <span className="status processing">生成中...</span>
-                      )}
-                      {summaryStatus === 'completed' && (
-                        <span className="status completed">已完成</span>
-                      )}
-                      {summaryStatus === 'failed' && (
-                        <span className="status failed">生成失败</span>
+
+                <div className="message system">
+                  <div className="message-content">
+                    <div className="summary-section">
+                      <div className="summary-header">
+                        <h4>AI文档摘要</h4>
+                        <div className="summary-status">
+                          {summaryStatus === 'pending' && (
+                            <span className="status pending">等待处理</span>
+                          )}
+                          {summaryStatus === 'processing' && (
+                            <span className="status processing">生成中...</span>
+                          )}
+                          {summaryStatus === 'completed' && (
+                            <span className="status completed">已完成</span>
+                          )}
+                          {summaryStatus === 'failed' && (
+                            <span className="status failed">生成失败</span>
+                          )}
+                          
+                          <button 
+                            className="generate-summary-btn"
+                            onClick={generateSummary}
+                            disabled={summaryLoading || summaryStatus === 'processing' || summaryStatus === 'pending'}
+                            title="重新生成摘要"
+                          >
+                            {summaryLoading ? '处理中...' : '生成摘要'}
+                          </button>
+                        </div>
+                      </div>
+                      
+                      {summaryError && (
+                        <div className="error-message">
+                          <span className="error-icon">⚠️</span>
+                          {summaryError}
+                          <button className="dismiss-btn" onClick={() => setSummaryError(null)}>✕</button>
+                        </div>
                       )}
                       
-                      <button 
-                        className="generate-summary-btn"
-                        onClick={generateSummary}
-                        disabled={summaryLoading || summaryStatus === 'processing' || summaryStatus === 'pending'}
-                        title="重新生成摘要"
-                      >
-                        {summaryLoading ? '处理中...' : '生成摘要'}
-                      </button>
+                      <div className="summary-content">
+                        {(summaryStatus === 'pending' || summaryStatus === 'processing') && (
+                          <div className="summary-loading">
+                            <div className="loading-spinner"></div>
+                            <p>AI正在生成文档摘要，请稍候...</p>
+                          </div>
+                        )}
+                        
+                        {summaryStatus === 'completed' && summary && (
+                          <div className="summary-text">
+                            {summary}
+                          </div>
+                        )}
+                        
+                        {summaryStatus === 'failed' && (
+                          <div className="summary-error">
+                            <p>摘要生成失败，请点击"生成摘要"按钮重试。</p>
+                          </div>
+                        )}
+                        
+                        {!summaryStatus && (
+                          <div className="summary-empty">
+                            <p>点击"生成摘要"按钮，使用AI生成文档摘要。</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  
-                  {summaryError && (
-                    <div className="error-message">
-                      <span className="error-icon">⚠️</span>
-                      {summaryError}
-                      <button className="dismiss-btn" onClick={() => setSummaryError(null)}>✕</button>
-                    </div>
-                  )}
-                  
-                  <div className="summary-content">
-                    {(summaryStatus === 'pending' || summaryStatus === 'processing') && (
-                      <div className="summary-loading">
-                        <div className="loading-spinner"></div>
-                        <p>AI正在生成文档摘要，请稍候...</p>
-                      </div>
-                    )}
-                    
-                    {summaryStatus === 'completed' && summary && (
-                      <div className="summary-text">
-                        {summary}
-                      </div>
-                    )}
-                    
-                    {summaryStatus === 'failed' && (
-                      <div className="summary-error">
-                        <p>摘要生成失败，请点击"生成摘要"按钮重试。</p>
-                      </div>
-                    )}
-                    
-                    {!summaryStatus && (
-                      <div className="summary-empty">
-                        <p>点击"生成摘要"按钮，使用AI生成文档摘要。</p>
-                      </div>
-                    )}
                   </div>
                 </div>
-                
-                <div className="content-section">
-                  <h4>文件内容</h4>
-                  {loading ? (
-                    <div className="loading">
-                      <div className="loading-spinner"></div>
-                      <p>正在加载文件内容...</p>
-                    </div>
-                  ) : fileContent ? (
-                    <div className="content-display">
-                      {fileContent.split('\n').map((line, i) => (
-                        <div key={i} className="content-line">{line || <br />}</div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="empty-content">
-                      <p>无法显示文件内容</p>
-                    </div>
-                  )}
+
+                <div className="message system">
+                  <div className="message-content">
+                    <h4>文件内容</h4>
+                    {loading ? (
+                      <div className="loading">
+                        <div className="loading-spinner"></div>
+                        <p>正在加载文件内容...</p>
+                      </div>
+                    ) : fileContent ? (
+                      <div className="content-display">
+                        {fileContent.split('\n').map((line, i) => (
+                          <div key={i} className="content-line">{line || <br />}</div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="empty-content">
+                        <p>无法显示文件内容</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </>
             ) : (
-              <div className="no-selection">
-                <div className="empty-state-icon">👈</div>
-                <p>从左侧选择一个文件查看内容</p>
+              <div className="message system">
+                <div className="message-content">
+                  <div className="empty-state-icon">👈</div>
+                  <p>从左侧选择一个文件查看内容</p>
+                </div>
               </div>
             )}
           </div>
