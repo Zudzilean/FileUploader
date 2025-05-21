@@ -162,9 +162,12 @@ function App() {
       case 'md':
         return '📝';
       case 'pdf':
-        return '��';
+        return '📑';
       case 'docx':
         return '📋';
+      case 'xlsx':
+      case 'xls':
+        return '📊';
       default:
         return '📁';
     }
@@ -206,7 +209,7 @@ function App() {
             type="file"
             style={{ display: 'none' }}
             multiple
-            accept=".txt,.md,.pdf,.docx"
+            accept=".txt,.md,.pdf,.docx,.xlsx,.xls"
             onChange={handleFileInputChange}
           />
           <ul className="sidebar-file-list">
@@ -217,7 +220,6 @@ function App() {
                 title={file.originalName}
                 onClick={() => handleSelectFile(file)}
               >
-                <span className="file-icon">{getFileTypeIcon(file)}</span>
                 <span className="file-name-ellipsis">{file.originalName}</span>
                 <button
                   className="delete-file-x"

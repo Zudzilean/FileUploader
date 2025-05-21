@@ -34,6 +34,9 @@ const FileUploader = ({ onUploadSuccess }) => {
         return '📑';
       case 'docx':
         return '📋';
+      case 'xlsx':
+      case 'xls':
+        return '📊';
       default:
         return '📁';
     }
@@ -48,8 +51,15 @@ const FileUploader = ({ onUploadSuccess }) => {
 
   // 验证文件类型
   const validateFileType = (file) => {
-    const validTypes = ['text/plain', 'text/markdown', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    const validExtensions = ['txt', 'md', 'pdf', 'docx'];
+    const validTypes = [
+      'text/plain', 
+      'text/markdown', 
+      'application/pdf', 
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',  // Excel 2007+
+      'application/vnd.ms-excel'  // Excel 97-2003
+    ];
+    const validExtensions = ['txt', 'md', 'pdf', 'docx', 'xlsx', 'xls'];
     
     const fileType = file.type;
     const fileExt = file.name.split('.').pop().toLowerCase();
@@ -63,7 +73,7 @@ const FileUploader = ({ onUploadSuccess }) => {
     const invalidFiles = acceptedFiles.filter(file => !validateFileType(file));
 
     if (invalidFiles.length > 0) {
-      setError(`以下文件类型不支持: ${invalidFiles.map(f => f.name).join(', ')}。请上传 txt, md, pdf 或 docx 文件。`);
+      setError(`以下文件类型不支持: ${invalidFiles.map(f => f.name).join(', ')}。请上传 txt, md, pdf, docx 或 Excel 文件。`);
     } else {
       setError(null);
     }
@@ -99,7 +109,9 @@ const FileUploader = ({ onUploadSuccess }) => {
       'text/plain': ['.txt'],
       'text/markdown': ['.md'],
       'application/pdf': ['.pdf'],
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ['.xlsx'],
+      'application/vnd.ms-excel': ['.xls']
     },
     noClick: false,
     noKeyboard: false
@@ -194,16 +206,18 @@ const FileUploader = ({ onUploadSuccess }) => {
       </button>
       <input {...getInputProps()} style={{ display: 'none' }} />
 
-      {/* 文件图标列表 */}
-      <ul className="upload-file-icons-list">
-        {files.map((file, idx) => (
-          <li
-            key={idx}
-            className="upload-file-icon-item"
-            title={file.name}
-            onClick={() => removeFile(idx)}
-          >
-            <span className="file-icon">{getFileIcon(file.name)}</span>
+      {/* 文件列表 */}
+      <ul className="file-list">
+        {files.map((file, index) => (
+          <li key={index} className="file-item">
+            <span className="file-name">{file.name}</span>
+            <button
+              className="remove-file"
+              onClick={() => removeFile(index)}
+              title="移除文件"
+            >
+              ×
+            </button>
           </li>
         ))}
       </ul>

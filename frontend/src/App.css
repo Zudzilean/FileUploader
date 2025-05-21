@@ -732,3 +732,36 @@ body {
   font-size: 20px;
   letter-spacing: 1px;
 }
+
+/* Excel 摘要样式 */
+.excel-summary-header {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 4px solid #28a745;
+}
+
+.excel-summary-header h5 {
+  margin: 0 0 0.5rem 0;
+  color: #28a745;
+  font-weight: 600;
+}
+
+.excel-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.excel-metadata span {
+  display: block;
+}
+
+.summary-content-text {
+  margin-top: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}

@@ -113,8 +113,15 @@ const storage = multer.diskStorage({
 
 // 文件类型验证
 const validateFileType = (file) => {
-  const allowedTypes = ['text/plain', 'text/markdown', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-  const allowedExtensions = ['.txt', '.md', '.pdf', '.docx'];
+  const allowedTypes = [
+    'text/plain', 
+    'text/markdown', 
+    'application/pdf', 
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',  // Excel 2007+
+    'application/vnd.ms-excel'  // Excel 97-2003
+  ];
+  const allowedExtensions = ['.txt', '.md', '.pdf', '.docx', '.xlsx', '.xls'];
   
   const fileExt = path.extname(file.originalname).toLowerCase();
   
@@ -127,7 +134,7 @@ const fileFilter = (req, file, cb) => {
   if (validateFileType(file)) {
     cb(null, true);
   } else {
-    cb(new Error('不支持的文件类型。请上传 txt, md, pdf 或 docx 文件。'), false);
+    cb(new Error('不支持的文件类型。请上传 txt, md, pdf, docx 或 Excel 文件。'), false);
   }
 };
 

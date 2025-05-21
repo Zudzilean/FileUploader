@@ -171,6 +171,9 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
         return '📑';
       case 'docx':
         return '📋';
+      case 'xlsx':
+      case 'xls':
+        return '📊';
       default:
         return '📁';
     }
@@ -202,6 +205,9 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
         return 'PDF';
       case 'docx':
         return 'Word';
+      case 'xlsx':
+      case 'xls':
+        return 'Excel';
       default:
         return '未知';
     }
@@ -231,12 +237,8 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
                     className="file-info"
                     onClick={() => fetchFileContent(file)}
                   >
-                    <span className="file-icon">{getFileTypeIcon(file)}</span>
                     <div className="file-details">
                       <span className="file-name">{file.originalName}</span>
-                      <span className="file-meta">
-                        {formatFileSize(file.size)} • {getFileTypeName(file)}
-                      </span>
                     </div>
                   </div>
                   <button 
@@ -324,7 +326,22 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
                         
                         {summaryStatus === 'completed' && summary && (
                           <div className="summary-text">
-                            {summary}
+                            {selectedFile.mimetype.includes('excel') && (
+                              <div className="excel-summary-header">
+                                <h5>Excel 文件摘要</h5>
+                                {selectedFile.metadata && (
+                                  <div className="excel-metadata">
+                                    <span>工作表数量: {selectedFile.metadata.totalSheets}</span>
+                                    {selectedFile.metadata.sheets && (
+                                      <span>工作表列表: {selectedFile.metadata.sheets.join(', ')}</span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            <div className="summary-content-text">
+                              {summary}
+                            </div>
                           </div>
                         )}
                         
