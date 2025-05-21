@@ -101,3 +101,27 @@ fileuploader/
 ## 许可证
 
 MIT License
+
+## 清理缓存、依赖和上传文件
+
+如需释放空间或重置开发环境，可一键删除所有依赖、缓存和上传文件：
+
+### Linux/macOS 命令
+```bash
+rm -rf node_modules backend/node_modules frontend/node_modules \
+       backend/uploads uploads \
+       dist build coverage .cache .temp .tmp \
+       backend/dist backend/build backend/coverage backend/.cache backend/.temp backend/.tmp \
+       frontend/dist frontend/build frontend/coverage frontend/.cache frontend/.temp frontend/.tmp
+```
+
+### Windows PowerShell 命令
+```powershell
+Remove-Item -Recurse -Force node_modules, .\backend\node_modules, .\frontend\node_modules
+Remove-Item -Recurse -Force .\backend\uploads, .\uploads
+Remove-Item -Recurse -Force dist, build, coverage, .cache, .temp, .tmp, \
+  .\backend\dist, .\backend\build, .\backend\coverage, .\backend\.cache, .\backend\.temp, .\backend\.tmp, \
+  .\frontend\dist, .\frontend\build, .\frontend\coverage, .\frontend\.cache, .\frontend\.temp, .\frontend\.tmp
+```
+
+> ⚠️ 删除操作不可恢复，请确保没有重要数据需要保留。
