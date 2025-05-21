@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const { RateLimiter, securityConfig } = require('./modules');
 
 // 加载环境变量
 dotenv.config();
@@ -13,6 +14,7 @@ dotenv.config();
 const File = require('./models/File');
 const documentParser = require('./utils/documentParser');
 const summaryQueue = require('./queues/summaryQueue');
+const { initializeModules } = require('./modules');
 
 // 配置常量
 const PORT = process.env.PORT || 5000;
@@ -485,5 +487,15 @@ process.on('SIGTERM', () => {
     process.exit(0);
   });
 });
+
+// 引入模块初始化
+(async () => {
+    await initializeModules();
+    // 其他服务启动逻辑...
+})();
+
+// 添加速率限制中间件
+const rateLimiter = new RateLimiter(securityConfig.rateLimit);
+app.use(rateLimiter.middleware());
 
 module.exports = app; // 导出供测试使用
