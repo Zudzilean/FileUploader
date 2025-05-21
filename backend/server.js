@@ -14,6 +14,7 @@ const File = require('./models/File');
 const documentParser = require('./utils/documentParser');
 const summaryQueue = require('./queues/summaryQueue');
 const FileProcessor = require('./utils/fileProcessor');
+const convertRouter = require('./routes/convert');
 
 // 配置常量
 const PORT = process.env.PORT || 5000;
@@ -444,6 +445,9 @@ app.delete('/api/files/:fileId', async (req, res, next) => {
     next(error);
   }
 });
+
+// 路由
+app.use('/api/convert', convertRouter);
 
 // 注册错误处理中间件
 app.use(errorHandler);

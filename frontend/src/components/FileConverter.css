@@ -1,0 +1,79 @@
+/**
+ * @file FileConverter.css
+ * @author Yundi Zhang
+ * @date 2024-03-21
+ * @description 文件转换组件样式
+ */
+
+.file-converter {
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.converter-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.format-select {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+  color: #495057;
+  cursor: pointer;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.format-select:hover {
+  border-color: #80bdff;
+}
+
+.format-select:focus {
+  outline: 0;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.convert-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.convert-button:hover {
+  background-color: #0056b3;
+}
+
+.convert-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f8d7da;
+  color: #721c24;
+  font-size: 14px;
+}
+
+.success-message {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #d4edda;
+  color: #155724;
+  font-size: 14px;
+} 

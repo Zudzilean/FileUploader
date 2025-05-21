@@ -3,6 +3,8 @@ import axios from 'axios';
 import './App.css';
 import FileUploader from './components/FileUploader';
 import FileViewer from './components/FileViewer';
+import FileConverter from './components/FileConverter';
+import ConvertModal from './components/ConvertModal';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -19,6 +21,7 @@ function App() {
   const [fileSummary, setFileSummary] = useState('');
   const [summaryStatus, setSummaryStatus] = useState('');
   const [summaryLoading, setSummaryLoading] = useState(false);
+  const [showConvertModal, setShowConvertModal] = useState(false);
 
   const fetchFiles = useCallback(async () => {
     setLoading(true);
@@ -207,9 +210,11 @@ function App() {
       <div className="app-main-flex">
         {/* 左侧栏 */}
         <aside className="sidebar">
-          <button className="upload-icon-btn sidebar-upload-btn" type="button" onClick={handleUploadBtnClick} title="新增文件">
-            <span className="upload-icon">+</span>
-          </button>
+          <div className="sidebar-buttons">
+            <button className="upload-icon-btn sidebar-upload-btn" type="button" onClick={handleUploadBtnClick} title="新增文件">
+              <span className="upload-icon">+</span>
+            </button>
+          </div>
           <input
             ref={fileInputRef}
             type="file"
@@ -248,55 +253,59 @@ function App() {
             </div>
           )}
           {loading ? (
-            <div className="message system">
-              <div className="message-content loading">
-                <div className="loading-spinner"></div>
-                <p>正在加载...</p>
+            <div className="loading">加载中...</div>
+          ) : selectedFile ? (
+            <div className="file-display">
+              <div className="file-header">
+                <h2>{selectedFile.originalName}</h2>
+                <div className="file-actions">
+                  <button
+                    className={`action-btn${viewMode === 'content' ? ' active' : ''}`}
+                    onClick={showFileContent}
+                  >
+                    内容
+                  </button>
+                  <button
+                    className={`action-btn${viewMode === 'summary' ? ' active' : ''}`}
+                    onClick={showSummary}
+                  >
+                    摘要
+                  </button>
+                  <FileConverter file={selectedFile} />
+                </div>
+              </div>
+              <div className="file-content">
+                {viewMode === 'content' ? (
+                  <pre>{fileContent}</pre>
+                ) : (
+                  <div className="summary-content">
+                    {summaryLoading ? (
+                      <div className="loading">生成摘要中...</div>
+                    ) : summaryStatus === 'pending' ? (
+                      <div className="loading">等待生成摘要...</div>
+                    ) : summaryStatus === 'failed' ? (
+                      <div className="error">生成摘要失败</div>
+                    ) : (
+                      <div className="summary-text">{fileSummary}</div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           ) : (
-            selectedFile ? (
-              <div className="file-content-area">
-                <div className="file-content-header">
-                  <span className="file-icon" style={{fontSize:'2rem'}}>{getFileTypeIcon(selectedFile)}</span>
-                  <span style={{marginLeft:'1rem',fontWeight:600}}>{selectedFile.originalName}</span>
-                </div>
-                <div className="file-meta-info">
-                  <span>大小: {selectedFile.size} 字节</span>
-                  {selectedFile.uploadDate && <span style={{marginLeft:'1.5rem'}}>上传于: {selectedFile.uploadDate}</span>}
-                </div>
-                {/* 内容/摘要切换 */}
-                {viewMode === 'content' && (
-                  <div className="content-display" style={{marginTop:'2rem'}}>
-                    {fileContent ? fileContent.split('\n').map((line,i)=>(<div key={i} className="content-line">{line || <br />}</div>)) : <span style={{color:'#bbb'}}>暂无内容</span>}
-                  </div>
-                )}
-                {viewMode === 'summary' && (
-                  <div className="content-display" style={{marginTop:'2rem'}}>
-                    {summaryLoading ? <span style={{color:'#bbb'}}>AI正在生成摘要...</span> :
-                      summaryStatus==='completed' && fileSummary ? fileSummary :
-                      summaryStatus==='failed' ? <span style={{color:'red'}}>摘要生成失败</span> :
-                      <span style={{color:'#bbb'}}>暂无摘要</span>
-                    }
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="guide-text-center">
-                <span style={{color:'#b0b0b0', textAlign:'center'}}>
-                  点击右侧+添加文件<br />
-                  支持格式：txt、md、pdf、docx、xlsx、xls
-                </span>
-              </div>
-            )
+            <div className="no-file-selected">
+              <p>欢迎使用文件管理与格式转换工具！</p>
+              <ol style={{textAlign: 'left', margin: '0 auto', maxWidth: 420, fontSize: '1rem', color: '#666'}}>
+                <li>点击左侧 <b>"+"</b> 按钮上传支持的文件（如 txt、md、pdf、docx、xlsx）。</li>
+                <li>点击文件名可查看内容或生成智能摘要。</li>
+                <li>点击右上角 <b>"转换"</b> 按钮，可将文件导出为其他格式（仅显示支持的目标格式）。</li>
+                <li>转换成功后，浏览器会自动弹出"保存为"窗口，选择本地保存路径。</li>
+                <li>如需每次选择保存位置，请在浏览器设置中开启"下载前询问保存位置"。</li>
+              </ol>
+            </div>
           )}
         </main>
       </div>
-      {/* 底部操作区 */}
-      <footer className="bottom-action-bar">
-        <button className="action-btn" disabled={!selectedFile} onClick={showFileContent}>文件内容</button>
-        <button className="action-btn" disabled={!selectedFile} onClick={showSummary}>生成摘要</button>
-      </footer>
       {/* 上传弹窗 */}
       {showUploader && (
         <div className="modal-mask" onClick={() => setShowUploader(false)}>
@@ -305,6 +314,15 @@ function App() {
           </div>
         </div>
       )}
+      {/* 转换弹窗 */}
+      <ConvertModal
+        isOpen={showConvertModal}
+        onClose={() => setShowConvertModal(false)}
+        onSuccess={() => {
+          setShowConvertModal(false);
+          // 可以在这里添加成功后的回调
+        }}
+      />
     </div>
   );
 }
