@@ -1,7 +1,7 @@
 /**
  * @file ErrorModal.js
  * @author Yundi Zhang
- * @date 2024-03-21
+ * @date 2025-05-21
  * @description 居中错误弹窗组件
  */
 import React from 'react';
