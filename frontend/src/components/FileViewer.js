@@ -219,8 +219,10 @@ const FileViewer = ({ uploadedFiles, onFileDeleted }) => {
         <div className="message system">
           <div className="message-content">
             <div className="empty-state-icon">📂</div>
-            <p>没有上传的文件</p>
-            <p className="empty-state-hint">上传文件后将显示在这里</p>
+            <p style={{color:'#b0b0b0', textAlign:'center'}}>
+              点击右侧+添加文件<br />
+              支持格式：txt、md、pdf、docx、xlsx、xls
+            </p>
           </div>
         </div>
       ) : (

@@ -13,6 +13,7 @@ dotenv.config();
 const File = require('./models/File');
 const documentParser = require('./utils/documentParser');
 const summaryQueue = require('./queues/summaryQueue');
+const FileProcessor = require('./utils/fileProcessor');
 
 // 配置常量
 const PORT = process.env.PORT || 5000;
@@ -178,23 +179,27 @@ app.post('/api/upload', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    
     try {
       if (!req.files || req.files.length === 0) {
         return res.status(400).json({ success: false, message: '没有文件被上传' });
       }
-
       console.log(`上传了 ${req.files.length} 个文件`);
-      
       // 处理每个上传的文件
       const uploadedFiles = await Promise.all(req.files.map(async (file) => {
         console.log(`文件上传成功: ${file.originalname} (${file.size} bytes)`);
         // 解析文件名，防止中文乱码
         const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        // 解析文件内容
+        // 解析文件内容和元信息
         let content = '';
+        let metadata = {};
         try {
-          content = await documentParser.parseDocument(file.path);
+          const result = await FileProcessor.getFileContent(file.path);
+          if (result.success) {
+            content = result.content;
+            metadata = result.metadata;
+          } else {
+            throw new Error(result.error);
+          }
         } catch (parseError) {
           console.error(`解析文件内容失败: ${parseError.message}`);
         }
@@ -221,10 +226,10 @@ app.post('/api/upload', (req, res, next) => {
           size: savedFile.size,
           mimetype: savedFile.mimetype,
           summaryStatus: savedFile.summaryStatus,
-          uploadDate: savedFile.uploadDate
+          uploadDate: savedFile.uploadDate,
+          metadata
         };
       }));
-
       res.json({
         success: true,
         message: `成功上传 ${uploadedFiles.length} 个文件`,
@@ -241,84 +246,46 @@ app.post('/api/upload', (req, res, next) => {
 app.get('/api/files/:fileId', async (req, res, next) => {
   try {
     const fileId = req.params.fileId;
-    
     // 从数据库获取文件信息
     const file = await File.findById(fileId);
-    
     if (!file) {
       return res.status(404).json({ success: false, message: '文件不存在' });
     }
-    
-    // 如果数据库中已有内容，直接返回
-    if (file.content) {
-      console.log(`从数据库返回文件内容: ${file.filename} (${file.content.length} 字符)`);
-      
-      return res.status(200).json({
-        success: true,
-        file: {
-          _id: file._id,
-          filename: file.filename,
-          originalName: file.originalName,
-          size: file.size,
-          mimetype: file.mimetype,
-          content: file.content,
-          summary: file.summary,
-          summaryStatus: file.summaryStatus,
-          uploadDate: file.uploadDate,
-          summaryDate: file.summaryDate
-        }
-      });
+    // 获取文件内容和元信息
+    let content = file.content;
+    let metadata = {};
+    if (!content) {
+      const result = await FileProcessor.getFileContent(file.path);
+      if (result.success) {
+        content = result.content;
+        metadata = result.metadata;
+        // 更新数据库内容
+        file.content = content;
+        file.summaryStatus = 'pending';
+        await file.save();
+        await summaryQueue.add({ fileId: file._id });
+      } else {
+        file.summaryStatus = 'failed';
+        await file.save();
+        return res.status(500).json({ success: false, message: '解析文件内容失败', error: result.error });
+      }
     }
-    
-    // 如果数据库中没有内容，尝试从文件系统读取
-    const filePath = path.join(__dirname, UPLOAD_DIR, file.filename);
-    console.log(`尝试从文件系统读取文件: ${filePath}`);
-
-    if (!fs.existsSync(filePath)) {
-      console.log(`文件不存在: ${filePath}`);
-      return res.status(404).json({ success: false, message: '文件不存在于文件系统' });
-    }
-
-    // 解析文件内容
-    try {
-      const content = await documentParser.parseDocument(filePath);
-      
-      // 更新数据库中的文件内容
-      file.content = content;
-      file.summaryStatus = 'pending';
-      await file.save();
-      
-      // 添加到摘要队列
-      await summaryQueue.add({ fileId: file._id });
-      
-      console.log(`成功读取并更新文件内容: ${file.filename} (${content.length} 字符)`);
-      
-      return res.status(200).json({
-        success: true,
-        file: {
-          _id: file._id,
-          filename: file.filename,
-          originalName: file.originalName,
-          size: file.size,
-          mimetype: file.mimetype,
-          content: content,
-          summaryStatus: 'pending',
-          uploadDate: file.uploadDate
-        }
-      });
-    } catch (parseError) {
-      console.error(`解析文件内容失败: ${parseError.message}`);
-      
-      // 更新文件状态为解析失败
-      file.summaryStatus = 'failed';
-      await file.save();
-      
-      return res.status(500).json({ 
-        success: false, 
-        message: '解析文件内容失败', 
-        error: parseError.message 
-      });
-    }
+    return res.status(200).json({
+      success: true,
+      file: {
+        _id: file._id,
+        filename: file.filename,
+        originalName: file.originalName,
+        size: file.size,
+        mimetype: file.mimetype,
+        content: content,
+        summary: file.summary,
+        summaryStatus: file.summaryStatus,
+        uploadDate: file.uploadDate,
+        summaryDate: file.summaryDate,
+        metadata
+      }
+    });
   } catch (error) {
     console.error(`读取文件失败: ${error.message}`);
     next(error);
@@ -353,26 +320,30 @@ app.get('/api/files/:fileId/summary', async (req, res, next) => {
 app.post('/api/files/:fileId/summary', async (req, res, next) => {
   try {
     const fileId = req.params.fileId;
-    
     // 从数据库获取文件信息
     const file = await File.findById(fileId);
-    
     if (!file) {
       return res.status(404).json({ success: false, message: '文件不存在' });
     }
-    
     // 检查文件是否有内容
-    if (!file.content) {
-      return res.status(400).json({ success: false, message: '文件内容为空，无法生成摘要' });
+    let content = file.content;
+    if (!content) {
+      const result = await FileProcessor.getFileContent(file.path);
+      if (result.success) {
+        content = result.content;
+        // 更新数据库内容
+        file.content = content;
+        file.summaryStatus = 'pending';
+        await file.save();
+      } else {
+        return res.status(400).json({ success: false, message: '文件内容为空，无法生成摘要' });
+      }
     }
-    
     // 更新摘要状态为待处理
     file.summaryStatus = 'pending';
     await file.save();
-    
     // 添加到摘要队列
     await summaryQueue.add({ fileId: file._id });
-    
     res.status(200).json({
       success: true,
       message: '摘要生成请求已提交',

@@ -277,7 +277,10 @@ function App() {
               </div>
             ) : (
               <div className="guide-text-center">
-                <span>现在你可以添加文件了</span>
+                <span style={{color:'#b0b0b0', textAlign:'center'}}>
+                  点击右侧+添加文件<br />
+                  支持格式：txt、md、pdf、docx、xlsx、xls
+                </span>
               </div>
             )
           )}
