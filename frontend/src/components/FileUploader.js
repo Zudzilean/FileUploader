@@ -154,6 +154,23 @@ const FileUploader = ({ onUploadSuccess }) => {
         // 通知父组件上传成功，传递文件信息
         onUploadSuccess(response.data.files);
         
+        // 如果上传成功，立即获取并显示第一个文件的内容
+        if (response.data.files.length > 0) {
+          const firstFile = response.data.files[0];
+          try {
+            const contentResponse = await axios.get(`${API_URL}/files/${firstFile._id}`);
+            if (contentResponse.data.success) {
+              // 通知父组件显示文件内容
+              onUploadSuccess([{
+                ...firstFile,
+                content: contentResponse.data.file.content
+              }]);
+            }
+          } catch (err) {
+            console.error('获取文件内容失败:', err);
+          }
+        }
+        
         // 显示摘要生成提示
         setTimeout(() => {
           setSuccessMessage(`文件已上传，AI正在生成摘要，请稍候...`);

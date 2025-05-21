@@ -69,10 +69,16 @@ function App() {
       });
       if (response.data.success) {
         setRefreshTrigger(prev => prev + 1);
-        // 自动选中新上传的第一个文件
+        // 自动选中新上传的第一个文件并显示内容
         if (response.data.files && response.data.files.length > 0) {
-          setSelectedFile(response.data.files[0]);
+          const newFile = response.data.files[0];
+          setSelectedFile(newFile);
           setViewMode('content');
+          // 直接获取并显示文件内容
+          const contentResponse = await axios.get(`${API_URL}/files/${newFile._id}`);
+          if (contentResponse.data.success) {
+            setFileContent(contentResponse.data.file.content || '');
+          }
         }
       } else {
         setError('上传失败: ' + response.data.message);
