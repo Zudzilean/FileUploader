@@ -1,16 +1,18 @@
 /**
  * @file convert.js
  * @author Yundi Zhang
- * @date 2024-03-21
- * @description 文件转换路由处理
- * @dependencies express, FileConverter
+ * @date 2025-05-21
+ * @description 文件转换路由处理（Redis 方案，无MongoDB）
+ * @dependencies express, FileConverter, redis
  */
 
 const express = require('express');
 const router = express.Router();
 const FileConverter = require('../utils/fileConverter');
-const File = require('../models/File');
 const fs = require('fs');
+const redis = require('../redisClient');
+
+const FILE_HASH_PREFIX = 'fileuploader:file:';
 
 /**
  * 转换文件格式
@@ -35,9 +37,9 @@ router.post('/:fileId', async (req, res) => {
       });
     }
 
-    // 获取文件信息
-    const file = await File.findById(fileId);
-    if (!file) {
+    // 获取文件信息（从 Redis）
+    const file = await redis.hgetall(FILE_HASH_PREFIX + fileId);
+    if (!file || !file.filename) {
       console.log('[Convert] 文件不存在:', fileId);
       return res.status(404).json({
         success: false,
@@ -63,10 +65,9 @@ router.post('/:fileId', async (req, res) => {
     const downloadName = `${file.originalName.split('.')[0]}.${targetFormat}`;
     res.download(outputPath, downloadName);
   } catch (error) {
-    console.error('文件转换失败:', error);
     res.status(500).json({
       success: false,
-      message: `文件转换失败: ${error.message}`
+      message: error.message
     });
   }
 });

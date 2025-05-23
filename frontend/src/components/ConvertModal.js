@@ -70,7 +70,7 @@ const ConvertModal = ({ isOpen, onClose, onSuccess }) => {
 
       // 直接请求后端已上传文件的转换接口
       const response = await axios.post(
-        `/api/convert/${selectedFile._id}`,
+        `/fileuploader/convert/${selectedFile._id}`,
         { targetFormat },
         { responseType: 'blob' }
       );

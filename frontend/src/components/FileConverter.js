@@ -46,7 +46,7 @@ const FileConverter = ({ file }) => {
       console.log('开始转换:', file, targetFormat);
 
       const response = await axios.post(
-        `/api/convert/${file._id}`,
+        `/fileuploader/convert/${file._id}`,
         { targetFormat },
         { responseType: 'blob' }
       );

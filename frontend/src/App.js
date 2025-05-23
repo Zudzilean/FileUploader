@@ -6,7 +6,7 @@ import FileViewer from './components/FileViewer';
 import FileConverter from './components/FileConverter';
 import ConvertModal from './components/ConvertModal';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/fileuploader';
 
 function App() {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -139,6 +139,7 @@ function App() {
         setSummaryLoading(false);
       }
     } catch (err) {
+      // 只在明确失败时报错
       setError('生成摘要失败: ' + (err.response?.data?.message || err.message));
       setSummaryLoading(false);
     }
@@ -154,11 +155,19 @@ function App() {
           if (['completed', 'failed'].includes(response.data.summaryStatus)) {
             clearInterval(interval);
             setSummaryLoading(false);
+            if (response.data.summaryStatus === 'failed') {
+              setError('生成摘要失败，请重试');
+            }
           }
         }
-      } catch {
+      } catch (err) {
+        if (err.response && err.response.status === 404) {
+          // 404 说明摘要还没生成，不报错，继续轮询
+          return;
+        }
         clearInterval(interval);
         setSummaryLoading(false);
+        setError('轮询摘要失败');
       }
     }, 2000);
   };
