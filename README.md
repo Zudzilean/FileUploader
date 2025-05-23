@@ -1,127 +1,99 @@
-# 文件上传、内容解析与格式转换系统
+# 文件管理与格式转换工具
 
-一个基于 Node.js 和 React 的文件上传与格式转换系统，支持多种文件格式的上传、内容查看、AI 摘要生成与格式转换导出。
+## 项目简介
+本项目为支持多格式文件上传、内容查看、AI智能摘要、格式转换的全栈应用，前端基于 React，后端基于 Node.js + Express + Redis。
 
-## 功能特点
+---
 
-- 支持多种文件格式（TXT、MD、PDF、DOCX、XLSX、XLS）
-- 文件内容自动解析与展示
-- 使用 DeepSeek AI 生成文档摘要
-- 文件格式智能转换（仅显示支持的目标格式，且不会出现与原格式相同的选项）
-- 转换成功后自动弹出"保存为"窗口，用户可自选保存路径
-- 文件列表管理与删除
-- 响应式设计，支持移动端
-
-## 操作步骤
-
-1. 访问 `http://localhost:3000` 打开应用
-2. 点击左侧 "+" 按钮上传支持的文件（如 txt、md、pdf、docx、xlsx）
-3. 点击文件名可查看内容或生成智能摘要
-4. 点击右上角 "转换" 按钮，可将文件导出为其他格式（仅显示支持的目标格式）
-5. 转换成功后，浏览器会自动弹出"保存为"窗口，选择本地保存路径
-6. 如需每次选择保存位置，请在浏览器设置中开启"下载前询问保存位置"
-
-## 注意事项
-
-- 仅支持有意义的格式转换（如 txt 转 json，xlsx 转 csv 等），不会出现"txt 转 txt"这类无意义选项
-- 单个文件大小限制为 10MB
-- 一次最多可上传 10 个文件
-- 摘要生成可能需要一些时间，请耐心等待
-- 如果摘要生成失败，可以点击"生成摘要"按钮重试
-
-## 技术栈
-
-### 前端
-- React (用户界面)
-- Axios (HTTP 请求)
-- CSS/自定义样式
-
-### 后端
-- Node.js (运行环境)
-- Express (Web 框架)
-- MongoDB (数据库存储)
-- Mongoose (MongoDB对象建模)
-- Bull (任务队列)
-- Redis (队列存储)
-- Multer (文件上传)
-- DeepSeek API (AI摘要生成)
-- xlsx, csv-writer, pdf-parse, mammoth 等格式处理库
-
-## 安装与启动
-
-1. 克隆项目
-```bash
-git clone [项目地址]
-cd fileuploader
+## 目录结构
+```
+FileUploader/
+├── backend/         # 后端Node服务
+├── frontend/        # 前端React项目
+├── tests/           # 测试用例
+├── README.md        # 项目说明
+└── ...
 ```
 
-2. 安装依赖
-```bash
-# 安装后端依赖
-cd backend
-npm install
+---
 
-# 安装前端依赖
-cd ../frontend
-npm install
+## 环境变量配置（backend/.env）
+```
+PORT=5000
+NODE_ENV=development
+MAX_FILE_SIZE=10485760
+UPLOAD_DIR=uploads
+REDIS_HOST=localhost
+REDIS_PORT=6379
+DEEPSEEK_API_KEY=你的DeepSeek密钥
+DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
+SUMMARY_MAX_LENGTH=300
 ```
 
-3. 配置环境变量
-在 `backend` 目录下创建 `.env` 文件，参考原说明。
+---
 
-4. 启动服务
+## 启动方式
+
+### 1. 后端
 ```bash
-# 启动后端服务
 cd backend
-npm start
+npm install
+npm run dev
+```
 
-# 启动前端服务
-cd ../frontend
+### 2. 前端
+```bash
+cd frontend
+npm install
 npm start
 ```
 
-## 项目结构
-```
-fileuploader/
-├── backend/           # 后端代码
-├── frontend/          # 前端代码
-└── README.md          # 项目说明
-```
+前端默认代理到 `http://localhost:5000`。
+
+---
+
+## 主要API接口说明
+
+### 文件上传
+- `POST /fileuploader/upload`
+  - form-data: `files`（支持多文件）
+  - 返回：文件元信息数组
+
+### 文件列表
+- `GET /fileuploader/files`
+  - 返回：所有已上传文件的元信息
+
+### 文件详情
+- `GET /fileuploader/files/:id`
+  - 返回：指定文件的内容、元数据、摘要等
+
+### 生成/轮询AI摘要
+- `POST /fileuploader/files/:id/summary`  # 主动触发摘要生成
+- `GET /fileuploader/files/:id/summary`   # 获取摘要内容和状态
+
+### 文件格式转换
+- `POST /fileuploader/convert/:id`
+  - body: `{ targetFormat: 'txt'|'csv'|'json' }`
+  - 返回：转换后文件（二进制流，自动下载）
+
+---
 
 ## 常见问题
 
-- 文件上传失败：检查文件大小、格式、网络
-- 转换失败：请确认目标格式支持，或查看后端日志
-- 下载未弹窗：请在浏览器设置中开启"下载前询问保存位置"
+- **上传文件名乱码？**
+  - 已修复，后端自动处理编码。
+- **摘要404或轮询报错？**
+  - 请确保后端已实现 `/fileuploader/files/:id/summary` 的 GET/POST 路由。
+- **转换接口404？**
+  - 前端请求路径需为 `/fileuploader/convert/:id`。
+- **AI摘要失败？**
+  - 检查 DeepSeek API Key 是否正确，额度是否充足。
+- **Redis未启动？**
+  - 请确保本地或远程 Redis 服务已启动。
 
-## 贡献指南
+---
 
-欢迎提交 Issue 和 Pull Request。
-
-## 许可证
-
-MIT License
-
-## 清理缓存、依赖和上传文件
-
-如需释放空间或重置开发环境，可一键删除所有依赖、缓存和上传文件：
-
-### Linux/macOS 命令
-```bash
-rm -rf node_modules backend/node_modules frontend/node_modules \
-       backend/uploads uploads \
-       dist build coverage .cache .temp .tmp \
-       backend/dist backend/build backend/coverage backend/.cache backend/.temp backend/.tmp \
-       frontend/dist frontend/build frontend/coverage frontend/.cache frontend/.temp frontend/.tmp
-```
-
-### Windows PowerShell 命令
-```powershell
-Remove-Item -Recurse -Force node_modules, .\backend\node_modules, .\frontend\node_modules
-Remove-Item -Recurse -Force .\backend\uploads, .\uploads
-Remove-Item -Recurse -Force dist, build, coverage, .cache, .temp, .tmp, \
-  .\backend\dist, .\backend\build, .\backend\coverage, .\backend\.cache, .\backend\.temp, .\backend\.tmp, \
-  .\frontend\dist, .\frontend\build, .\frontend\coverage, .\frontend\.cache, .\frontend\.temp, .\frontend\.tmp
-```
-
-> ⚠️ 删除操作不可恢复，请确保没有重要数据需要保留。
+## 贡献&维护
+- 作者：Yundi Zhang
+- 日期：2025-05-23
+- 如有问题请提 issue 或联系作者。
